@@ -39,10 +39,10 @@ st.set_page_config(
 def login_page():
     # Attempt to load logo for login page
     try:
-        logo = Image.open("Logo.png")
+        logo = Image.open("logo.png")
         st.image(logo, width=150) # Adjust width as needed
     except FileNotFoundError:
-        st.warning("Logo.png not found. Please ensure it's in the repository.")
+        st.warning("logo.png not found. Please ensure it's in the repository.")
 
     st.title("🔒 Login to Unsupervised Learning Dashboard") # Updated login title
     st.markdown("Please enter your credentials to access the application.")
@@ -88,17 +88,17 @@ def main_app():
     # It starts with:
     # st.sidebar.title(" ")
     # try:
-    #     logo = Image.open("Logo.png")
+    #     logo = Image.open("logo.png")
     #     st.sidebar.image(logo, use_container_width=True)
     # ... and continues to the end of the file.
 
     st.sidebar.title(" ") # Small space before logo
     try:
-        logo = Image.open("Logo.png")
+        logo = Image.open("logo.png")
         # FIX: Replace use_column_width with use_container_width
         st.sidebar.image(logo, use_container_width=True) # Use container_width for responsiveness
     except FileNotFoundError:
-        st.sidebar.warning("Logo.png not found. Please ensure it's in the repository.")
+        st.sidebar.warning("logo.png not found. Please ensure it's in the repository.")
 
     st.title("📊 Unsupervised Learning (using Machine Learning)") # Main heading updated
 
@@ -106,9 +106,9 @@ def main_app():
     Welcome! This app helps you discover customer segments using unsupervised machine learning.
     """)
 
-    # --- Logout Button ---
+    # --- logout Button ---
     if st.session_state.authenticated:
-        if st.sidebar.button("Logout"):
+        if st.sidebar.button("logout"):
             st.session_state.authenticated = False
             st.rerun()
 
@@ -379,7 +379,7 @@ def main_app():
         
         # --- Add logo to report ---
         try:
-            logo = Image.open("Logo.png")
+            logo = Image.open("logo.png")
             logo_stream = io.BytesIO()
             logo.save(logo_stream, format="PNG")
             logo_stream.seek(0)
@@ -387,7 +387,7 @@ def main_app():
             last_paragraph = document.paragraphs[-1] 
             last_paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER # Center the logo
         except FileNotFoundError:
-            document.add_paragraph("Logo (Logo.png) not found for report.")
+            document.add_paragraph("logo (logo.png) not found for report.")
         
         document.add_heading('ML Analysis Report', level=1) # Report title updated
         document.add_paragraph(f"Report generated on: {pd.to_datetime('today').strftime('%Y-%m-%d %H:%M:%S')}")
